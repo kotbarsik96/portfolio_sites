@@ -3,7 +3,7 @@
     <h4 class="features-book__page-title" @click="$emit('createModalWindow', page)">{{ capitalLetter(page.title) }}</h4>
     <div class="features-book__page-presentation">
       <image-container v-if="presentsBy === 'img'" :src="page.presentation[srcType] || page.presentation['src']"></image-container>
-      <video-container v-if="presentsBy === 'video'" :src="page.presentation[srcType] || page.presentation['src']"></video-container>
+      <video-container v-if="presentsBy === 'video'" :src="page.presentation[srcType] || page.presentation['src']" ref="vContainer"></video-container>
     </div>
     <div class="features-book__page-number">{{ page.pageNumber }}</div>
   </div>
@@ -28,6 +28,11 @@ export default {
     },
     methods: {
         capitalLetter
+    },
+    computed: {
+      vContainer(){
+        return this.$refs.vContainer || null;
+      }
     }
 };
 </script>

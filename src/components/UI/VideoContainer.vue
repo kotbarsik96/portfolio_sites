@@ -79,8 +79,7 @@ export default {
     play(pointerType) {
       this.video.play();
       this.vContainer.classList.add("__playing");
-      console.log(pointerType);
-      if(pointerType === "touch") this.hideControls();
+      if (pointerType === "touch") this.hideControls();
     },
     pause() {
       this.video.pause();
@@ -94,7 +93,7 @@ export default {
       if (!this.dbClick) {
         this.togglePlaying(event);
         this.dbClick = true;
-        setTimeout(() => this.dbClick = false, 250);
+        setTimeout(() => (this.dbClick = false), 250);
         return;
       }
 
