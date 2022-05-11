@@ -1,0 +1,1851 @@
+@import "mixins-variables.scss";
+@import "fonts.scss";
+@import "nullstyles.scss";
+
+// <СВЕТЛАЯ ТЕМА>=================================================================================
+$contextColor: #cb0000;
+$selectedColor: #e3e800;
+$fontColor: #fff;
+$contextBorder: rgba(0, 0, 0, 35%);
+$selectionColor: #38c4c9;
+// <СВЕТЛАЯ ТЕМА>=================================================================================
+
+// <ТЕМНАЯ ТЕМА>==================================================================================
+$contextColor_dark: #182e53;
+$selectedColor_dark: #b6ba00;
+$fontColor_dark: #bdbdbd;
+$contextBorder_dark: rgba(255, 255, 255, 15%);
+$selectionColor_dark: #569eb8;
+// <ТЕМНАЯ ТЕМА>==================================================================================
+
+// <ОБЩИЕ СТИЛИ>==================================================================================
+body {
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: 400;
+    @include line-height(24, 29);
+    color: $fontColor;
+
+    .__selected,
+    .__selected::before {
+        color: $selectedColor;
+        transition-property: color;
+        transition-duration: $transitionSelected;
+    }
+    .theme-change {
+        &__button.__selected {
+            color: $selectedColor;
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    color: $fontColor_dark;
+
+    ::selection {
+        background: $selectionColor_dark;
+        color: #000;
+    }
+    .counter-button {
+        margin: 0 15px;
+    }
+    .__selected,
+    .__selected::before {
+        color: $selectedColor_dark;
+        transition-property: color;
+        transition-duration: $transitionSelected;
+    }
+    .theme-change {
+        &__button.__selected {
+            color: $selectedColor_dark;
+        }
+    }
+}
+
+body.__no-scroll {
+    overflow: hidden;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+.container {
+    max-width: #{$screenSize}px;
+    margin: 0 auto;
+    padding: 0 #{$screenPaddingSize}px;
+    box-sizing: border-box;
+}
+
+.__padding-elem {
+    box-sizing: border-box;
+}
+// <ОБЩИЕ СТИЛИ>==================================================================================
+
+// <BUTTON>=======================================================================================
+.button {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 26px;
+    @include line-height(26, 31);
+    text-align: center;
+    padding: 25px 40px;
+    margin: 10px;
+    border-radius: 90px 10px 90px 10px;
+    box-sizing: border-box;
+    transition: color 0.25s ease;
+    min-width: 250px;
+    color: $fontColor;
+    background: $contextColor;
+    box-shadow: 7px 6px 35px rgba(0, 0, 0, 25%);
+    &:hover {
+        color: $selectedColor;
+    }
+
+    @media (max-width: $tablet) {
+        @include adaptive-font(26, 18);
+        padding: 20px 30px;
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .button {
+        color: $fontColor_dark;
+        background: $contextColor_dark;
+        box-shadow: 7px 6px 35px rgba(255, 255, 255, 10%);
+        &:hover {
+            color: $selectedColor_dark;
+        }
+    }
+}
+// <BUTTON>=======================================================================================
+
+// <BUTTONS-BLOCK>================================================================================
+.buttons-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__button {
+        margin: 10px;
+    }
+}
+// <BUTTONS-BLOCK>================================================================================
+
+// <BURGER>=======================================================================================
+.burger {
+    $transitionDuration: 0.5s;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-property: background, border-radius, padding, width, height;
+    transition-duration: $transitionDuration;
+    box-sizing: border-box;
+
+    &__container {
+        position: relative;
+        width: 30px;
+        height: 25px;
+    }
+    &__line {
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        border-radius: 10px;
+        background: $fontColor;
+        transition-property: top, transform, opacity;
+        transition-duration: $transitionDuration, $transitionDuration, $transitionDuration;
+        &:nth-child(1) {
+            top: 0;
+        }
+        &:nth-child(2) {
+            top: 50%;
+        }
+        &:nth-child(3) {
+            top: 100%;
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .burger {
+        &__line {
+            background: $fontColor_dark;
+        }
+    }
+}
+// <BURGER>=======================================================================================
+
+// <HEADER>=======================================================================================
+.header {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    .burger {
+        display: none;
+        &::before,
+        &::after {
+            background: $contextColor;
+        }
+    }
+
+    &__container {
+        max-width: #{$screenSize}px;
+        margin: 0 auto;
+        padding: 40px 10px 0 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 24px;
+        transition-property: padding, font-size, background, border-radius;
+        transition-duration: 0.3s;
+    }
+
+    &__menu {
+        display: flex;
+    }
+
+    &__link {
+        margin-right: 28px;
+        font-weight: 500;
+        a {
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 3%;
+                width: 95%;
+                height: 2px;
+                background: transparent;
+                transition-property: background;
+                transition-duration: $transitionSelected;
+            }
+        }
+    }
+    &__link.__selected,
+    &__link.__selected > a:hover,
+    &__link.__selected > a:visited {
+        color: $selectedColor;
+        a::before {
+            background: $selectedColor;
+        }
+    }
+}
+.header.__fixed {
+    .header {
+        &__container {
+            border-radius: 0 0 25px 25px;
+            padding: 20px 15px;
+            font-size: 20px;
+            background: $contextColor;
+            @media (max-width: $tablet) {
+                padding: 15px 20px;
+            }
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .header {
+        .burger {
+            &::before,
+            &::after {
+                background: $contextColor_dark;
+            }
+        }
+        &__link.__selected,
+        &__link.__selected > a:hover,
+        &__link.__selected > a:visited {
+            color: $selectedColor_dark;
+            a::before {
+                background: $selectedColor_dark;
+            }
+        }
+    }
+    .header.__fixed {
+        .header {
+            &__container {
+                background: $contextColor_dark;
+            }
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    $transitionDuration: 0.5s;
+
+    .header {
+        .burger {
+            display: flex;
+            z-index: 50;
+            position: relative;
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                transition-property: opacity;
+                transition-duration: 0.1s;
+                opacity: 0;
+            }
+            &::before {
+                bottom: 0px;
+                width: 12px;
+                height: 5px;
+                z-index: 40;
+            }
+            &::after {
+                bottom: -4px;
+                border-radius: 50% 50% 0 0;
+                width: 14px;
+                height: 8px;
+                z-index: 30;
+            }
+        }
+        .burger.__active {
+            background: $contextColor;
+            border: 1px solid $contextBorder;
+            border-radius: 50%;
+            padding: 8px 8px 10px 8px;
+            width: 40px;
+            height: 40px;
+
+            &::before,
+            &::after {
+                opacity: 1;
+            }
+            &::before {
+                transition: opacity $transitionDuration ease;
+            }
+            &::after {
+                transition: opacity 1s ease;
+            }
+
+            .burger {
+                &__line {
+                    top: 50%;
+                    &:nth-child(1) {
+                        transform: rotate(45deg);
+                    }
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+                    &:nth-child(3) {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+
+        &__container {
+            position: relative;
+            font-size: 18px !important;
+            padding: 20px 20px 2px 20px;
+        }
+
+        &__menu {
+            background: $contextColor;
+            border: 1px solid $contextBorder;
+            transition-property: border, top;
+            transition-duration: $transitionDuration;
+            position: absolute;
+            top: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 20px;
+            flex-wrap: wrap;
+            width: 539px;
+            opacity: 0;
+            visibility: hidden;
+            transition-property: opacity, visibility;
+            transition-duration: $transitionDuration, 0s;
+            transition-delay: 0s, $transitionDuration;
+            @media (max-width: 599px) {
+                width: 90%;
+            }
+        }
+        &__menu.__active {
+            opacity: 1;
+            visibility: visible;
+            transition-property: opacity, visibility;
+            transition-duration: $transitionDuration, 0s;
+            transition-delay: 0s;
+        }
+
+        &__link {
+            flex: 0 0 100%;
+            margin-right: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .header.__fixed {
+        .burger.__active {
+            border: 0;
+            background: transparent;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+        .header {
+            &__menu {
+                top: 105%;
+                border: 0;
+
+                &::before {
+                    background: $contextColor;
+                    content: "";
+                    position: absolute;
+                    top: -5px;
+                    left: 10px;
+                    width: 20px;
+                    height: 10px;
+                }
+            }
+            &__menu.__active {
+                transform: translate(0, 0%);
+            }
+        }
+    }
+
+    // темная тема //
+    body.__dark-theme {
+        .header {
+            .burger.__active {
+                background: $contextColor_dark;
+                border: 1px solid $contextBorder_dark;
+            }
+
+            &__menu {
+                background: $contextColor_dark;
+                border: 1px solid $contextBorder_dark;
+            }
+        }
+        .header.__fixed {
+            .burger.__active {
+                border: 0;
+            }
+            .header {
+                &__menu {
+                    &::before {
+                        background: $contextColor_dark;
+                    }
+                }
+            }
+        }
+    }
+}
+// <HEADER>=======================================================================================
+
+// <THEME-CHANGE>=================================================================================
+.theme-change {
+    &__button {
+        cursor: pointer;
+        &::before {
+            font-size: 24px;
+        }
+    }
+
+    &__delimiter {
+        font-size: 28px;
+        margin: 0 7px;
+    }
+}
+// <THEME-CHANGE>=================================================================================
+
+// <POPUP>========================================================================================
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+    cursor: pointer;
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: translate(0, 100vh);
+        transition: transform 0.35s ease;
+    }
+
+    &__body--tablet {
+        cursor: default;
+        background: $contextColor;
+        box-shadow: 0px, 10px, 10px, rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        padding: 30px;
+        box-sizing: border-box;
+        max-width: 600px;
+        max-height: 90vh;
+        overflow: hidden;
+        font-style: italic;
+    }
+    &__body--element {
+        box-sizing: border-box;
+        flex: 1 1 auto;
+        height: 100%;
+        img,
+        video {
+            cursor: default;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        text-align: center;
+        @include line-height(24, 30);
+        font-weight: 500;
+        &:not(:last-child) {
+            margin: 0 0 30px 0;
+        }
+    }
+
+    &__content {
+        font-size: 22px;
+        @include line-height(22, 26);
+    }
+
+    &__paragraph,
+    &__item {
+        a:hover {
+            color: $selectedColor;
+            text-decoration: underline;
+        }
+    }
+
+    &__item {
+        &:not(:last-child) {
+            &::after {
+                content: ";";
+            }
+        }
+        &:last-child {
+            &::after {
+                content: ".";
+            }
+        }
+    }
+
+    &__list {
+        font-size: 22px;
+        @include line-height(22, 34);
+    }
+}
+.popup--colored {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+// темная тема //
+body.__dark-theme {
+    .popup {
+        &__body--tablet {
+            background: $contextColor_dark;
+            box-shadow: 0px, 10px, 10px, rgba(137, 137, 137, 0.25);
+        }
+        &__paragraph,
+        &__item {
+            a:hover {
+                color: $selectedColor_dark;
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .popup {
+        &__body--tablet {
+            max-width: 95vw;
+        }
+
+        &__title {
+            @include adaptive-font(24, 20);
+        }
+    }
+}
+// <POPUP>========================================================================================
+
+// <PAGE-BLOCK>===================================================================================
+.page-block {
+    padding: 100px 0 70px 0;
+
+    &__title {
+        text-align: center;
+        font-weight: 700;
+        font-size: 72px;
+        min-height: 1em;
+        @include line-height(72, 87);
+        margin-bottom: 60px;
+        @media (max-width: $mobile) {
+            @include adaptive-font(72, 40);
+            margin-bottom: 35px;
+        }
+    }
+
+    &__text-block {
+        text-align: center;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__message {
+        flex: 1 1 auto;
+        margin: 0 10px 0 0;
+    }
+
+    &__images {
+        flex: 0 0 50%;
+    }
+
+    @media (max-width: $smallDesktop) {
+        padding: 75px 0 30px 0;
+    }
+    @media (max-width: $tablet) {
+        &__images {
+            flex: 0 0 40%;
+        }
+    }
+    @media (max-width: $mobile) {
+        &__content {
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        &__message {
+            flex: 0 0 100%;
+            margin: 0 0 50px 0;
+        }
+        &__images {
+            flex: 0 0 100%;
+        }
+    }
+}
+// <PAGE-BLOCK>===================================================================================
+
+// <PAGE-BLOCK COLORS>============================================================================
+.page-block {
+    position: relative;
+    $gradientStart: rgb(25, 125, 0);
+    $gradientEnd: rgba(48, 219, 5, 90%);
+
+    background: linear-gradient(45deg, $gradientStart, $gradientEnd);
+    &:nth-child(2n) {
+        background: linear-gradient(-45deg, $gradientEnd, $gradientStart);
+    }
+    &:last-child::before {
+        width: 0;
+        height: 0;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-image: linear-gradient(90deg, #990000, $contextColor);
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .page-block {
+        $gradientStart: rgb(84, 0, 0);
+        $gradientEnd: rgba(158, 29, 1, 90%);
+
+        background-image: linear-gradient(45deg, $gradientStart, $gradientEnd);
+        &:nth-child(2n) {
+            background-image: linear-gradient(-45deg, $gradientEnd, $gradientStart);
+        }
+        &::before {
+            background-image: linear-gradient(90deg, #3a6abd, $contextColor_dark);
+        }
+        &:nth-child(2n)::before {
+            background-image: linear-gradient(90deg, $contextColor_dark, #3a6abd);
+        }
+    }
+}
+// <PAGE-BLOCK COLORS>============================================================================
+
+// <ABOUT-BLOCK>==================================================================================
+.about-block {
+    &__message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__images {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__image {
+        width: 190px;
+        height: 190px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 20px;
+    }
+
+    &__image-html {
+        width: 100%;
+        background-image: url("../img/mains/html.png");
+    }
+
+    &__image-css {
+        background-image: url("../img/mains/css.png");
+    }
+
+    &__image-js {
+        background-image: url("../img/mains/js.png");
+    }
+
+    @media (max-width: $tablet) {
+        &__image {
+            width: 14vw;
+            height: 14vw;
+            margin: 10px;
+        }
+    }
+    @media (max-width: $mobile) {
+        &__image {
+            width: 125px;
+            height: 125px;
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .about-block {
+        &__image-html {
+            background-image: url("../img/mains/html--dark.png");
+        }
+
+        &__image-css {
+            background-image: url("../img/mains/css--dark.png");
+        }
+
+        &__image-js {
+            background-image: url("../img/mains/js--dark.png");
+        }
+    }
+}
+// <ABOUT-BLOCK>==================================================================================
+
+// <ABOUT-LIST>===================================================================================
+.about-list {
+    width: 90%;
+
+    &__item {
+        margin: 0 0 30px 0;
+        &::before,
+        span {
+            color: $selectedColor;
+        }
+        &::before {
+            margin: 0 20px 0 0;
+        }
+    }
+
+    @media (max-width: 499px) {
+        &__item {
+            font-size: 21px;
+            margin: 0 0 20px 0;
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .about-list {
+        &__item {
+            &::before,
+            span {
+                color: $selectedColor_dark;
+            }
+        }
+    }
+}
+// <ABOUT-LIST>===================================================================================
+
+// <SELECT>=======================================================================================
+.select {
+    position: relative;
+    cursor: pointer;
+    margin: 10px 15px;
+    font-size: 18px;
+    width: 275px;
+
+    &__value,
+    &__item {
+        padding: 5px 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: $contextColor;
+        border: 1px solid $contextBorder;
+        user-select: none;
+    }
+
+    &__value {
+        color: $selectedColor;
+        z-index: 40;
+    }
+
+    &__items {
+        position: absolute;
+        z-index: 100;
+        top: 100%;
+        left: 0;
+        width: 100%;
+    }
+
+    &__item {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        &:hover {
+            background: $selectionColor;
+        }
+        input {
+            display: none;
+        }
+    }
+}
+
+// темная тема //
+body.__dark-theme {
+    .select {
+        &__value,
+        &__item {
+            background: $contextColor_dark;
+            border: 1px solid $contextBorder_dark;
+        }
+
+        &__item {
+            &:hover {
+                background: $selectionColor_dark;
+            }
+        }
+
+        &__value {
+            color: $selectedColor_dark;
+        }
+    }
+}
+// <SELECT>=======================================================================================
+
+// <FILTER>=======================================================================================
+.filter {
+    min-width: 350px;
+
+    &__title,
+    &__body {
+        background: $contextColor;
+        border: 1px solid $contextBorder;
+        padding: 10px 20px;
+    }
+
+    &__title {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        user-select: none;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        border-radius: 10px;
+
+        &::before {
+            font-size: 24px;
+        }
+    }
+
+    &__body {
+        position: relative;
+        bottom: 10px;
+        z-index: 9;
+        overflow: hidden;
+        font-size: 20px;
+        transition-property: max-height, padding;
+        transition-duration: 0.4s;
+        transition-delay: 0s, 0.3s;
+        padding-top: 20px;
+        padding-bottom: 0;
+        border-radius: 0 0 10px 10px;
+        max-height: 30vh;
+        overflow: auto;
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+    }
+
+    &.__spoiler-shown {
+        .filter {
+            &__title {
+                &::after {
+                    color: $selectedColor;
+                }
+            }
+            &__body {
+                transition-delay: 0s;
+            }
+        }
+    }
+
+    &__body-block {
+        padding: 10px 0;
+        &:not(:last-child) {
+            border-bottom: 1px solid $contextBorder;
+        }
+    }
+
+    &__list-title {
+        font-weight: 500;
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        font-weight: 500;
+        color: $selectedColor;
+        text-align: center;
+    }
+
+    &__item {
+        margin: 0 0 10px 0;
+        user-select: none;
+        font-size: 16px;
+
+        label {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+        }
+        span {
+            &::before {
+                font-family: "icons";
+                margin: 0 10px 0 0;
+            }
+        }
+        input {
+            display: none;
+        }
+        input:checked + span,
+        input:checked + span::before {
+            color: $selectedColor;
+        }
+    }
+    &__item--radio {
+        span {
+            &::before {
+                content: "\e803";
+            }
+        }
+        input:checked + span {
+            &::before {
+                content: "\e804";
+            }
+        }
+    }
+    &__item--checkbox {
+        span {
+            &::before {
+                content: "\e801";
+            }
+        }
+        input:checked + span {
+            &::before {
+                content: "\e802";
+            }
+        }
+    }
+
+    &__chosen-title {
+        font-weight: 400;
+        font-size: 24px;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    &__chosen-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__chosen-item {
+        margin: 5px 10px;
+        color: $selectedColor;
+        &::before {
+            font-family: "icons";
+            content: "\e902";
+            margin: 0 5px 0 0;
+        }
+        &:not(:last-child) {
+            &::after {
+                content: ";";
+            }
+        }
+        &:last-child {
+            &::after {
+                content: ".";
+            }
+        }
+    }
+
+    @media (max-width: 549px) {
+        min-width: 0;
+        width: 100%;
+
+        &__title,
+        &__body,
+        &__chosen-title,
+        &__chosen-item {
+            font-size: 18px;
+        }
+        &__title {
+            &::after {
+                font-size: 24px !important;
+            }
+        }
+    }
+}
+
+// темная тема //
+body.__dark-theme {
+    .filter {
+        &__title,
+        &__body {
+            background: $contextColor_dark;
+            border: 1px solid $contextBorder_dark;
+        }
+
+        &__item {
+            input:checked + span,
+            input:checked + span::before {
+                color: $selectedColor_dark;
+            }
+        }
+
+        &.__spoiler-shown {
+            .filter {
+                &__title::after {
+                    color: $selectedColor_dark;
+                }
+            }
+        }
+
+        &__body-block {
+            &:not(:last-child) {
+                border-bottom: 1px solid $contextBorder_dark;
+            }
+        }
+
+        &__list-title {
+            color: $selectedColor_dark;
+        }
+
+        &__chosen-item {
+            color: $selectedColor_dark;
+        }
+    }
+}
+// <FILTER>=======================================================================================
+
+// <TOOLS-BLOCK>==================================================================================
+.tools-block__content {
+    display: block;
+}
+.tools-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    &__item {
+        flex: 0 0 300px;
+        margin: 0 15px 30px 15px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__item-image {
+        margin: 0 0 30px 0;
+        width: 70px;
+        height: 70px;
+        background: $selectedColor;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::before {
+            font-size: 50px;
+        }
+    }
+
+    &__item-title {
+        font-size: 30px;
+        margin: 0 0 20px 0;
+    }
+
+    &__item-description {
+        font-size: 16px;
+        font-style: italic;
+        margin: 0 0 20px 0;
+    }
+
+    &__item-item {
+        margin: 0 0 15px 0;
+    }
+
+    &__button {
+        font-size: 18px;
+    }
+
+    @media (max-width: 1029px) {
+        justify-content: space-around;
+        &__item {
+            flex: 0 0 40%;
+        }
+    }
+    @media (max-width: 699px) {
+        &__item {
+            flex: 0 0 80%;
+            margin: 0 15px 50px 15px;
+        }
+        &__item-title {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+        &__item-description {
+            margin: 0 0 10px 0;
+        }
+        &__item-item {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+    }
+}
+// темная тема //
+body.__dark-theme {
+    .tools-list {
+        &__item-image {
+            background: $selectedColor_dark;
+            &::before {
+                color: #000;
+            }
+        }
+    }
+}
+// <TOOLS-BLOCK>==================================================================================
+
+// <SITES-LIST, SITES-ITEM>=======================================================================
+.sites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &__empty {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        img {
+            width: 72px;
+            height: 72px;
+        }
+    }
+}
+.site-item {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0 50px 0;
+    transition: all 0.3s;
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px 0;
+    }
+
+    &__control-icon {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &:not(:last-child)::after {
+            content: "|";
+            padding: 0 10px;
+            font-size: 20px;
+            color: $fontColor;
+        }
+        [class*="__icon-"]::before {
+            font-size: 24px;
+        }
+        [class*="__icon-"].__selected::before {
+            color: $selectedColor;
+        }
+    }
+
+    &__body {
+        width: 100%;
+    }
+
+    &__wrapper {
+        position: relative;
+        background-color: rgba(#fff, 0.4);
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        width: 100%;
+        height: 17vw;
+        margin: 0 0 10px 0;
+    }
+
+    &__features {
+        position: absolute;
+        font-size: 18px;
+        @include line-height(18, 22);
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+        max-height: 100%;
+        overflow: auto;
+    }
+    &__features-title {
+        font-weight: 700;
+        text-shadow: 0px 0px 10px rgba(#000, 0.5);
+        margin: 0 0 13px 0;
+    }
+    &__feature {
+        font-style: italic;
+        margin: 0 0 5px 0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        background-size: 65px;
+        background-position: center;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 25px;
+        @include line-height(25, 30);
+        font-style: italic;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 599px) {
+    .site-item {
+        flex: 0 0 100%;
+        margin: 0 0 25px 0;
+
+        &__wrapper {
+            height: 60vw;
+        }
+
+        &__title {
+            @include adaptive-font(25, 20);
+        }
+
+        &__features {
+            @include adaptive-font(18, 15);
+        }
+    }
+}
+
+// темная тема //
+body.__dark-theme {
+    .site-item {
+        &__control-icon {
+            &::after {
+                color: $fontColor_dark;
+            }
+            [class*="__icon-"].__selected::before {
+                color: $selectedColor_dark;
+            }
+        }
+    }
+}
+// <SITES-LIST, SITES-ITEM>=======================================================================
+
+// <WORKS-BLOCK>==================================================================================
+.works-block {
+    &__container {
+        max-width: 1540px;
+    }
+
+    &__content {
+        display: flex;
+    }
+
+    &__sites-list {
+        flex: 1 1 auto;
+        margin: 0 20px 0 0;
+    }
+
+    &__filter-block {
+        margin: 40px 0 0 0;
+        flex: 0 0 350px;
+        position: relative;
+    }
+    &__filter-block-body {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+        @media (min-width: 1250px) {
+            width: 350px;
+            &.__stick-top {
+                position: relative;
+                top: 0;
+            }
+            &.__sticky {
+                position: fixed;
+                margin: 0 50px 0 0;
+            }
+            &.__stick-bottom {
+                position: relative;
+                top: 100%;
+                transform: translateY(-100%);
+            }
+        }
+    }
+
+    @media (max-width: 1249px) {
+        &__content {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__sites-list {
+            order: 2;
+            margin: 40px 0 0 0;
+
+            @media (min-width: 600px) {
+                .site-item {
+                    flex: 0 0 550px;
+                    margin: 0 15px 50px 15px;
+                    &__wrapper {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+
+        &__filter-block {
+            flex: 1 1 auto;
+            order: 1;
+        }
+        &__filter-block-body {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+// <WORKS-BLOCK>==================================================================================
+
+
+@mixin mediaContainerShadow {
+    text-shadow: 1px 1px 10px rgba(#000, 0.5);
+}
+// <VIDEO-CONTAINER>==============================================================================
+.video-container {
+    @mixin trackRounding {
+        border-radius: 10px;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+
+    &__play-btn,
+    &__expand-btn {
+        &::before {
+            @include fonts-icon-styles;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+    &__play-btn::before,
+    &__expand-btn::before,
+    &__timestamp {
+        @include mediaContainerShadow;
+    }
+
+    video {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    &__controls {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 101%;
+        height: 101%;
+        background-color: rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__play-btn {
+        position: absolute;
+        &::before {
+            font-size: 45px;
+        }
+    }
+
+    &__timestamp {
+        position: absolute;
+        bottom: 15%;
+        left: 7%;
+        font-style: italic;
+        font-size: 18px;
+        @include line-height(20, 36);
+        color: #fff;
+        text-shadow: 1px 1px 5px #000;
+    }
+
+    &__expand-btn {
+        position: absolute;
+        bottom: 15%;
+        right: 7%;
+        &::before {
+            font-size: 30px;
+        }
+    }
+
+    &__videotrack {
+        position: absolute;
+        bottom: 6%;
+        width: 90%;
+        height: 10px;
+        background: rgba(#7b7b7b, 0.75);
+        @include trackRounding;
+        cursor: pointer;
+        touch-action: none;
+    }
+
+    &__timeline {
+        position: relative;
+        width: 0%;
+        height: 100%;
+        background: #0015d7;
+        @include trackRounding;
+        display: flex;
+        align-items: center;
+    }
+
+    &__slider {
+        position: absolute;
+        right: 0;
+        transform: translateX(45%);
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 50%;
+    }
+
+    @media (max-width: #{$screenSize}px) {
+        &__timestamp {
+            @include adaptive-font(18, 13);
+        }
+        &__play-btn::before {
+            @include adaptive-font(45, 35);
+        }
+        &__expand-btn::before {
+            @include adaptive-font(30, 20);
+        }
+    }
+}
+
+// состояния переходов (когда элементы управления скрываются/показываются, напр., при воспроизведении) //
+.video-container {
+    // состояние: видео на паузе //
+    $fadeDur: 0.85s;
+    $playingDelay: .9s;
+
+    &__play-btn {
+        transition-property: opacity;
+        transition-duration: $fadeDur;
+        opacity: 1;
+    }
+
+    &__expand-btn,
+    &__timestamp,
+    &__videotrack {
+        transition-property: opacity, visibility;
+        transition-duration: $fadeDur;
+        transition-delay: 0s;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    // состояние: видео воспроизводится, элементы управления скрываются //
+    &.__hide-controls.__playing {
+        .video-container {
+            &__expand-btn,
+            &__timestamp,
+            &__videotrack {
+                transition-delay: $playingDelay, calc(#{$playingDelay} + #{$fadeDur});
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+    // состояние: видео воспроизводится, кнопка play скрыта //
+    &.__playing {
+        .video-container {
+            &__play-btn {
+                opacity: 0;
+            }
+        }
+    }
+}
+// <VIDEO-CONTAINER>==============================================================================
+
+// <IMAGE-CONTAINER>==============================================================================
+.image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__controls{
+        opacity: 0;
+        transition: opacity .3s;
+        position: absolute;
+        background: rgba(#000, .3);
+        top: 0;
+        left: 0;
+        width: 101%;
+        height: 101%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__controls.__shown {
+        opacity: 1;
+    }
+
+    &__expand-btn {
+        position: absolute;
+        &::before{
+            color: #fff;
+            @include mediaContainerShadow;
+        }
+    }
+}
+// <IMAGE-CONTAINER>==============================================================================
+
+// <FEATURES-BLOCK>===============================================================================
+.features-block {
+    &__body {
+        margin: 45px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__book-pages {
+        font-weight: 500;
+        font-size: 24px;
+        @include line-height(24, 29);
+        margin: 0 0 25px 0;
+        text-align: center;
+    }
+}
+.features-book {
+    // от соотношения сторон книги (ширина / высота)
+    $coef: 1.579;
+    $bookHeight: calc(#{$screenSize}px / #{$coef});
+
+    background-image: url("../img/mains/book.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: $bookHeight;
+
+    &__slide {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 5% 10%;
+    }
+
+    &__page {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #000;
+        flex: 0 0 45%;
+        &:nth-child(2n) {
+            .features-book__page-number {
+                text-align: right;
+            }
+        }
+    }
+
+    &__page-title {
+        cursor: pointer;
+        text-align: center;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 24px;
+        @include line-height(24, 29);
+        flex: 0 0 2.75em;
+        overflow: hidden;
+    }
+
+    &__page-presentation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 60%;
+        margin: 15px auto;
+        img,
+        video {
+            cursor: pointer;
+            max-width: 100%;
+            max-height: calc(50vw / #{$coef});
+            object-fit: contain;
+        }
+    }
+
+    &__page-number {
+        font-weight: 500;
+        font-size: 24px;
+        @include line-height(24, 29);
+    }
+
+    @media (max-width: #{$screenSize - 1}px) {
+        $bookHeight: calc((100vw - #{$screenPaddingSize * 2}px) / #{$coef});
+
+        height: $bookHeight;
+
+        &__page-presentation {
+            max-height: 70%;
+        }
+    }
+    // включить singlePage режим отрисовки
+    @media (max-width: 749px) {
+        $bookHeight: calc(((150vw - #{$screenPaddingSize * 2}px) - #{$screenPaddingSize * 2}px) / #{$coef});
+
+        background-position: 0 center;
+        width: calc(150vw - #{$screenPaddingSize * 2}px);
+        height: $bookHeight;
+
+        &__slide {
+            padding: 5% 8%;
+        }
+        &__page-presentation{
+            img,video{
+                max-height: calc(90vw / #{$coef});
+            }
+        }
+    }
+    @media (max-width: 599px) {
+        $bookHeight: calc(((200vw - #{$screenPaddingSize * 2}px) - #{$screenPaddingSize * 2}px) / #{$coef});
+
+        width: calc(200vw - #{$screenPaddingSize * 2}px);
+        height: $bookHeight;
+
+        &__page-title {
+            @include adaptive-font(24, 19);
+        }
+
+        &__page-number {
+            font-size: 19px;
+        }
+
+        &__page-presentation{
+            img,video{
+                max-height: calc(100vw / #{$coef});
+            }
+        }
+    }
+}
+// <FEATURES-BLOCK>===============================================================================
+
+// <MODAL-WINDOW>=================================================================================
+.modal-windows-list {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    cursor: pointer;
+}
+.modal-window {
+    position: absolute;
+    z-index: 990;
+    flex: 1 1 auto;
+    &:last-child {
+        z-index: 991;
+    }
+    // убрать кнопки expand в video-/image-container
+    .__icon-expand, .image-container__controls {
+        display: none;
+    }
+
+    &__body-text {
+        cursor: default;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: $contextColor;
+        box-shadow: 5px 5px 15px rgba(#000, 0.25);
+        padding: 30px;
+        max-height: 90vh;
+        width: 650px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: auto;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 22px;
+        @include line-height(22, 27);
+        margin: 0 0 10px 0;
+    }
+
+    a {
+        transition: color 0.3s;
+        &:hover {
+            color: $selectedColor;
+        }
+    }
+
+    &__text {
+        font-style: italic;
+        font-size: 20px;
+        margin: 0 20px;
+    }
+
+    &__paragraph {
+        @include line-height(20, 24);
+        margin: 0 0 15px 0;
+    }
+
+    &__list {
+        margin: 0 0 15px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    ol {
+        .modal-window__list-item {
+            list-style: decimal;
+        }
+    }
+
+    &__list-item {
+        @include line-height(20, 36);
+        &:not(:last-child)::after {
+            content: ";";
+        }
+    }
+
+    &__body-media {
+        box-sizing: border-box;
+        video,
+        img {
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+    }
+
+    @media (max-width: 799px) {
+        &__body-text {
+            width: 90vw;
+            padding: 20px 15px;
+        }
+    }
+    @media (max-width: 599px) {
+        &__title {
+            @include adaptive-font(22, 18);
+        }
+        &__text {
+            @include adaptive-font(20, 16);
+        }
+    }
+}
+
+// темная тема //
+body.__dark-theme {
+    .modal-window {
+        &__body-text {
+            background: $contextColor_dark;
+        }
+
+        a:hover {
+            color: $selectedColor_dark;
+        }
+    }
+}
+// <MODAL-WINDOW>=================================================================================
