@@ -7,7 +7,7 @@
             "Слайдеры",
             "Ползунок для установления цены (в фильтре товаров)"
         ],
-        "url": "https://kotbarsik96.github.io/device/dist/main/index.html",
+        "url": "https://kotbarsik96.github.io/sites/device/dist/main/index.html",
         "imgDesktop": "img/sites-photo/device/desktop",
         "imgMobile": "img/sites-photo/device/mobile",
         "imgIcon": "img/sites-photo/device/icon.png",
@@ -21,7 +21,7 @@
             "Слайдеры",
             "Анимация при прокрутке страницы"
         ],
-        "url": "https://kotbarsik96.github.io/gamershop/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/gamershop/dist/index.html",
         "imgDesktop": "img/sites-photo/gamershop/desktop",
         "imgMobile": "img/sites-photo/gamershop/mobile",
         "imgIcon": "img/sites-photo/gamershop/icon.png",
@@ -34,7 +34,7 @@
         "features": [
             "Слайдеры"
         ],
-        "url": "https://kotbarsik96.github.io/molecule/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/molecule/dist/index.html",
         "imgDesktop": "img/sites-photo/molecule/desktop",
         "imgMobile": "img/sites-photo/molecule/mobile",
         "imgIcon": "img/sites-photo/molecule/icon.png",
@@ -49,7 +49,7 @@
             "Слайдеры (связанные с выбором цвета)",
             "Работающая корзина (на JS)"
         ],
-        "url": "https://kotbarsik96.github.io/streetster/dist/html/index/index.html",
+        "url": "https://kotbarsik96.github.io/sites/streetster/dist/html/index/index.html",
         "imgDesktop": "img/sites-photo/streetster/desktop",
         "imgMobile": "img/sites-photo/streetster/mobile",
         "imgIcon": "img/sites-photo/streetster/icon.svg",
@@ -63,7 +63,7 @@
             "Переключаемое меню",
             "Работающая корзина (на JS)"
         ],
-        "url": "https://kotbarsik96.github.io/T-D/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/T&D/dist/index.html",
         "imgDesktop": "img/sites-photo/t-d/desktop",
         "imgMobile": "img/sites-photo/t-d/mobile",
         "imgIcon": "img/sites-photo/t-d/icon.png",
@@ -76,7 +76,7 @@
         "features": [
             "Слайдеры"
         ],
-        "url": "https://kotbarsik96.github.io/trevland/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/trevland/dist/index.html",
         "imgDesktop": "img/sites-photo/trevland/desktop",
         "imgMobile": "img/sites-photo/trevland/mobile",
         "imgIcon": "img/sites-photo/trevland/icon.svg",
@@ -92,7 +92,7 @@
             "Работающая корзина (на JS)",
             "Ползунок для установления цены (в фильтре товаров)"
         ],
-        "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html",
+        "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html",
         "imgDesktop": "img/sites-photo/audiofree/desktop",
         "imgMobile": "img/sites-photo/audiofree/mobile",
         "imgIcon": "img/sites-photo/audiofree/icon.svg",
@@ -105,7 +105,7 @@
         "features": [
             "Анимация при прокрутке страницы"
         ],
-        "url": "https://kotbarsik96.github.io/webovio/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/webovio/dist/index.html",
         "imgDesktop": "img/sites-photo/webovio/desktop",
         "imgMobile": "img/sites-photo/webovio/mobile",
         "imgIcon": "img/sites-photo/webovio/icon.svg",
@@ -118,7 +118,7 @@
         "features": [
             "Параллакс эффект"
         ],
-        "url": "https://kotbarsik96.github.io/yebo/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/yebo/dist/index.html",
         "imgDesktop": "img/sites-photo/yebo/desktop",
         "imgMobile": "img/sites-photo/yebo/mobile",
         "imgIcon": "img/sites-photo/yebo/icon.svg",
@@ -131,7 +131,7 @@
         "features": [
             "Анимация при прокрутке страницы"
         ],
-        "url": "https://kotbarsik96.github.io/resource/dist/index.html",
+        "url": "https://kotbarsik96.github.io/sites/resource/dist/index.html",
         "imgDesktop": "img/sites-photo/resource/desktop",
         "imgMobile": "img/sites-photo/resource/mobile",
         "imgIcon": "img/sites-photo/resource/icon.svg",

@@ -10,15 +10,15 @@
             "examples": [
                 {
                     "text": "GamerShop",
-                    "url": "https://kotbarsik96.github.io/gamershop/dist/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/gamershop/dist/index.html"
                 },
                 {
                     "text": "Webovio",
-                    "url": "https://kotbarsik96.github.io/webovio/dist/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/webovio/dist/index.html"
                 },
                 {
                     "text": "Resource",
-                    "url": "https://kotbarsik96.github.io/resource/dist/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/resource/dist/index.html"
                 }
             ]
         },
@@ -32,11 +32,11 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/catalogue.html#range-example"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/catalogue.html#range-example"
                 },
                 {
                     "text": "Device",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/catalogue.html#range-example"
+                    "url": "https://kotbarsik96.github.io/sites/device/dist/main/catalogue.html#range-example"
                 }
             ]
         },
@@ -50,23 +50,23 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (на главной странице несколько слайдеров)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html"
                 },
                 {
                     "text": "Streetster (связан с кружочками выбора цвета)",
-                    "url": "https://kotbarsik96.github.io/streetster/dist/html/categories/category-street.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/streetster/dist/html/categories/category-street.html#slider-example"
                 },
                 {
                     "text": "Trevland",
-                    "url": "https://kotbarsik96.github.io/trevland/dist/index.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/trevland/dist/index.html#slider-example"
                 },
                 {
                     "text": "Device",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/device/dist/main/"
                 },
                 {
                     "text": "Molecule",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/index.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/molecule/dist/"
                 }
             ]
         },
@@ -79,7 +79,7 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (классический спойлер активируется на мобильной версии)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html#spoiler-toggler-example"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html#spoiler-toggler-example"
                 }
             ]
         },
@@ -93,7 +93,7 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (для вызова нужно совершить действие с товаром, например: добавить в корзину/избранное, удалить из корзины/избранного)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/catalogue.html"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/catalogue.html"
                 }
             ]
         },
@@ -107,11 +107,11 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (на компьютерной версии показывается вместо спойлеров)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html#spoiler-toggler-example"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html#spoiler-toggler-example"
                 },
                 {
                     "text": "Takeaway & Delivery",
-                    "url": "https://kotbarsik96.github.io/T-D/dist/index.html#toggler-example"
+                    "url": "https://kotbarsik96.github.io/sites/T&D/dist/index.html#toggler-example"
                 }
             ]
         }
@@ -126,11 +126,11 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/catalogue.html#range-example"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/catalogue.html#range-example"
                 },
                 {
                     "text": "Device",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/catalogue.html#range-example"
+                    "url": "https://kotbarsik96.github.io/sites/device/dist/main/catalogue.html#range-example"
                 }
             ]
         },
@@ -143,23 +143,23 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (на главной странице несколько слайдеров)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html"
                 },
                 {
                     "text": "Streetster (связан с кружочками выбора цвета)",
-                    "url": "https://kotbarsik96.github.io/streetster/dist/html/categories/category-street.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/streetster/dist/html/categories/category-street.html#slider-example"
                 },
                 {
                     "text": "Trevland",
-                    "url": "https://kotbarsik96.github.io/trevland/dist/index.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/trevland/dist/index.html#slider-example"
                 },
                 {
                     "text": "Device",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/index.html"
+                    "url": "https://kotbarsik96.github.io/sites/device/dist/main/index.html"
                 },
                 {
                     "text": "Molecule",
-                    "url": "https://kotbarsik96.github.io/device/dist/main/index.html#slider-example"
+                    "url": "https://kotbarsik96.github.io/sites/device/dist/main/index.html#slider-example"
                 }
             ]
         },
@@ -172,7 +172,7 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (классический спойлер активируется на мобильной версии)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/index.html#spoiler-toggler-example"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/index.html#spoiler-toggler-example"
                 }
             ]
         },
@@ -185,7 +185,7 @@
             "examples": [
                 {
                     "text": "AudioFreeDesign (для вызова нужно совершить действие с товаром, например: добавить в корзину/избранное, удалить из корзины/избранного)",
-                    "url": "https://kotbarsik96.github.io/audiofree/dist/html-main/catalogue.html"
+                    "url": "https://kotbarsik96.github.io/sites/audiofreedesign/dist/html-main/catalogue.html"
                 }
             ]
         }
