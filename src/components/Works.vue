@@ -16,6 +16,7 @@
               v-for="(work, workIndx) in sortedWorks"
               :key="work.id || Date.now() + workIndx"
               :work="work"
+              :data-works-item-index="workIndx"
             >
             </works-item>
           </transition-group>
@@ -170,16 +171,11 @@ export default {
     },
     // переходы списков
     onBeforeEnter(el) {
+      console.log(el.dataset.worksItemIndex);
       gsap.set(el, {
         opacity: 0,
         paddingBottom: 0,
-      });
-    },
-    onBeforeEnter(el) {
-      gsap.set(el, {
-        opacity: 0,
-        maxHeight: 0,
-        paddingBottom: 0
+        x: el.dataset.worksItemIndex % 2 === 0 ? -500 : 500
       });
     },
     onEnter(el, done) {
@@ -187,7 +183,8 @@ export default {
         opacity: 1,
         maxHeight: "500px",
         paddingBottom: "50px",
-        onComplete: done
+        onComplete: done,
+        x: 0
       });
     },
     onLeave(el, done) {
@@ -195,6 +192,7 @@ export default {
         opacity: 0,
         maxHeight: 0,
         paddingBottom: 0,
+        x: el.dataset.worksItemIndex % 2 === 0 ? -500 : 500,
         onStart: () => el.addEventListener('transitionend', () => {
           done();
           el.ontransitionend = null;
