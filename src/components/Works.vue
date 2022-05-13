@@ -5,6 +5,7 @@
       <div class="works-block__content">
         <ul class="works-block__sites-list sites-list" ref="sitesList">
           <transition-group
+            appear
             name="works-list"
             @before-enter="onBeforeEnter"
             @enter="onEnter"
@@ -15,15 +16,20 @@
               v-for="(work, workIndx) in sortedWorks"
               :key="work.id || Date.now() + workIndx"
               :work="work"
-              :data-animitem-index="workIndx"
             >
             </works-item>
-            <div class="sites-list__empty" v-if="sortedWorks.length < 1" :key="'sites-list-empty'">
-            <img :src="cricketIcon" alt="Сверчок" />
-            <p>Здесь пусто...</p>
-            <p>Возможно, по выбранным фильтрам нет совпадений</p>
-          </div>
           </transition-group>
+          <transition name="works-list__empty">
+            <div
+              class="sites-list__empty"
+              v-if="sortedWorks.length < 1"
+              :key="'sites-list-empty'"
+            >
+              <img :src="cricketIcon" alt="Сверчок" />
+              <p>Здесь пусто...</p>
+              <p>Возможно, по выбранным фильтрам нет совпадений</p>
+            </div>
+          </transition>
         </ul>
         <div class="works-block__filter-block">
           <div class="works-block__filter-block-body" ref="filterBlockBody">
@@ -89,7 +95,6 @@ export default {
         },
       },
       selectedFilters: [],
-      workStyles: {}
     };
   },
   computed: {
@@ -163,38 +168,55 @@ export default {
         optObj.options = Array.from(optsSet);
       }
     },
-    getWorkStyles(){
-      const work = this.$refs.sitesList.querySelector(".site-item");
-      const styles = window.getComputedStyle(work);
-      this.workStyles = { height: styles.height, margin: styles.margin };
+    // переходы списков
+    onBeforeEnter(el) {
+      gsap.set(el, {
+        opacity: 0,
+        paddingBottom: 0,
+      });
     },
     onBeforeEnter(el) {
-      gsap.set(el, { opacity: 0, height: 0, xPercent: el.dataset.animitemIndex % 2 === 0 ? -150 : 150, margin: 0 })
+      gsap.set(el, {
+        opacity: 0,
+        maxHeight: 0,
+        paddingBottom: 0
+      });
     },
     onEnter(el, done) {
-      const workStyles = this.workStyles;
       gsap.to(el, {
         opacity: 1,
-        height: workStyles.height,
-        margin: workStyles.margin,
-        xPercent: 0,
+        maxHeight: "500px",
+        paddingBottom: "50px",
         onComplete: done
       });
     },
     onLeave(el, done) {
       gsap.to(el, {
         opacity: 0,
-        height: 0,
-        margin: 0,
-        xPercent: el.dataset.animitemIndex % 2 === 0 ? -150 : 150,
-        onComplete: done
+        maxHeight: 0,
+        paddingBottom: 0,
+        onStart: () => el.addEventListener('transitionend', () => {
+          done();
+          el.ontransitionend = null;
+        }),
       });
-    }
+    },
   },
   mounted() {
     this.setFilterOptions();
-    this.getWorkStyles();
     positionSticky(this.$refs.filterBlockBody, this.$refs.filterEl.body);
   },
 };
 </script>
+
+<style>
+.works-list__empty-enter-from,
+.works-list__empty-leave-to {
+  opacity: 0;
+}
+
+.works-list__empty-enter-active,
+.works-list__empty-leave-active {
+  transition: opacity 0.5s;
+}
+</style>

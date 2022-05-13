@@ -8,6 +8,7 @@
       >
         <div class="__icon-desktop"></div>
       </div>
+      <div class="site-item__controls-delimeter">|</div>
       <div
         class="site-item__control-icon"
         :class="{ __selected: showFeatures }"
@@ -15,6 +16,7 @@
       >
         <div class="__icon-question-mark"></div>
       </div>
+      <div class="site-item__controls-delimeter">|</div>
       <div
         class="site-item__control-icon"
         :class="{ __selected: !isDesktop }"

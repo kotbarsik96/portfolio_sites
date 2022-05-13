@@ -1171,16 +1171,19 @@ body.__dark-theme {
 
 // <SITES-LIST, SITES-ITEM>=======================================================================
 .sites-list {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     &__empty {
+        position: absolute;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         font-weight: 500;
+        align-self: center;
         img {
             width: 72px;
             height: 72px;
@@ -1192,8 +1195,8 @@ body.__dark-theme {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 0 50px 0;
-    transition: all 0.3s;
+    padding: 0 0 50px 0;
+    transition: all .6s;
 
     &__controls {
         display: flex;
@@ -1205,18 +1208,16 @@ body.__dark-theme {
         display: flex;
         align-items: center;
         cursor: pointer;
-        &:not(:last-child)::after {
-            content: "|";
-            padding: 0 10px;
-            font-size: 20px;
-            color: $fontColor;
-        }
         [class*="__icon-"]::before {
             font-size: 24px;
         }
         [class*="__icon-"].__selected::before {
             color: $selectedColor;
         }
+    }
+
+    &__controls-delimeter{
+        margin: 0 5px;
     }
 
     &__body {
