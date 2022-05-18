@@ -1,9 +1,11 @@
 <template>
   <section id="about-block" class="page-block about-block">
     <div class="container">
-      <h1 class="page-block__title anim__object-text">
-        Портфолио
-      </h1>
+      <scroll-anim :animType="'typeWriter'" :repeatAnim="true">
+        <h1 class="page-block__title anim__object-text">
+          Портфолио
+        </h1>
+      </scroll-anim>
       <div class="page-block__content">
         <div class="page-block__message about-block__message">
           <ul class="about-list">
@@ -31,11 +33,15 @@
             </li>
             <li class="about-list__item __icon-portfolio">
               Работ в портфолио:
-              <span id="about__works-amount" class="anim__object-text">{{ works.length }}</span>
+              <span id="about__works-amount" class="anim__object-text">{{
+                works.length
+              }}</span>
             </li>
             <li class="about-list__item __icon-skills">
               Навыки:
-              <span id="about__js-features" class="anim__object-text"> {{ pagedFeatures.pageCounter }} </span>
+              <span id="about__js-features" class="anim__object-text">
+                {{ pagedFeatures.pageCounter }}
+              </span>
               интересных реализаций JavaScript на разных сайтах
             </li>
           </ul>
@@ -59,13 +65,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'about-block',
+  name: "about-block",
   computed: {
-    ...mapGetters(["pagedFeatures", "works"])
-  }
+    ...mapGetters(["pagedFeatures", "works"]),
+  },
 };
 </script>
 

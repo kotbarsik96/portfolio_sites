@@ -1,7 +1,9 @@
 <template>
   <section id="works-block" class="page-block works-block">
     <div class="works-block__container container">
-      <h2 class="page-block__title anim__object-text">Мои работы</h2>
+      <scroll-anim :animType="'typeWriter'">
+        <h2 class="page-block__title anim__object-text">Мои работы</h2>
+      </scroll-anim>
       <div class="works-block__content">
         <ul class="works-block__sites-list sites-list" ref="sitesList">
           <transition-group
@@ -171,11 +173,10 @@ export default {
     },
     // переходы списков
     onBeforeEnter(el) {
-      console.log(el.dataset.worksItemIndex);
       gsap.set(el, {
         opacity: 0,
         paddingBottom: 0,
-        x: el.dataset.worksItemIndex % 2 === 0 ? -500 : 500
+        x: el.dataset.worksItemIndex % 2 === 0 ? -500 : 500,
       });
     },
     onEnter(el, done) {
@@ -184,7 +185,7 @@ export default {
         maxHeight: "500px",
         paddingBottom: "50px",
         onComplete: done,
-        x: 0
+        x: 0,
       });
     },
     onLeave(el, done) {
@@ -193,10 +194,11 @@ export default {
         maxHeight: 0,
         paddingBottom: 0,
         x: el.dataset.worksItemIndex % 2 === 0 ? -500 : 500,
-        onStart: () => el.addEventListener('transitionend', () => {
-          done();
-          el.ontransitionend = null;
-        }),
+        onStart: () =>
+          el.addEventListener("transitionend", () => {
+            done();
+            el.ontransitionend = null;
+          }),
       });
     },
   },
