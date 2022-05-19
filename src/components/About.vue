@@ -1,47 +1,51 @@
 <template>
   <section id="about-block" class="page-block about-block">
     <div class="container">
-      <scroll-anim :animType="'typeWriter'" :repeatAnim="true">
+      
         <h1 class="page-block__title anim__object-text">
-          Портфолио
-        </h1>
-      </scroll-anim>
+          <scroll-anim :animType="'typeWriter'" :repeatAnim="true" :speed="75">Портфолио</scroll-anim></h1>
       <div class="page-block__content">
         <div class="page-block__message about-block__message">
           <ul class="about-list">
             <li class="about-list__item __icon-person">
               Имя:
-              <span id="about__name" class="anim__object-text"
-                >Лёша Никифоров</span
-              >
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__name">Лёша Никифоров</span>
+              </scroll-anim>
             </li>
             <li class="about-list__item __icon-activity">
               Деятельность:
-              <span id="about__activity" class="anim__object-text"
-                >верстальщик сайтов со знанием Vue.JS 3</span
-              >
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__activity"
+                  >верстальщик сайтов со знанием Vue.JS 3</span
+                >
+              </scroll-anim>
             </li>
             <li class="about-list__item __icon-date">
               Возраст:
-              <span id="about__age" class="anim__object-text">19 лет</span>
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__age">19 лет</span>
+              </scroll-anim>
             </li>
             <li class="about-list__item __icon-date">
               Занимаюсь версткой уже
-              <span id="about__layout-date" class="anim__object-text"
-                >более, чем 1.5 года</span
-              >
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__layout-date">более, чем 1.5 года</span>
+              </scroll-anim>
             </li>
             <li class="about-list__item __icon-portfolio">
               Работ в портфолио:
-              <span id="about__works-amount" class="anim__object-text">{{
-                works.length
-              }}</span>
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__works-amount">{{ works.length }}</span>
+              </scroll-anim>
             </li>
             <li class="about-list__item __icon-skills">
               Навыки:
-              <span id="about__js-features" class="anim__object-text">
-                {{ pagedFeatures.pageCounter }}
-              </span>
+              <scroll-anim :animType="'typeWriter'" :queue="true" :speed="75">
+                <span id="about__js-features">
+                  {{ pagedFeatures.pageCounter }}
+                </span>
+              </scroll-anim>
               интересных реализаций JavaScript на разных сайтах
             </li>
           </ul>

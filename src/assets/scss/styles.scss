@@ -1397,6 +1397,7 @@ body.__dark-theme {
     @mixin trackRounding {
         border-radius: 10px;
     }
+    -webkit-tap-highlight-color: transparent;
 
     display: flex;
     align-items: center;
@@ -1561,6 +1562,7 @@ body.__dark-theme {
     justify-content: center;
     cursor: pointer;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
 
     img {
         width: 100%;
@@ -1739,6 +1741,7 @@ body.__dark-theme {
     justify-content: center;
     z-index: 1000;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .modal-window {
     position: absolute;

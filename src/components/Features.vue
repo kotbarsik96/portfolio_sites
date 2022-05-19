@@ -1,7 +1,9 @@
 <template>
   <section id="features-block" class="page-block features-block">
     <div class="container">
-      <h2 class="page-block__title">Что именно я умею?</h2>
+      <scroll-anim :animType="'typeWriter'">
+        <h2 class="page-block__title">Что именно я умею?</h2>
+      </scroll-anim>
       <div class="page-block__text-block text-block">
         <p class="text-block__paragraph">
           В этом разделе я собрал динамический контент, реализованный с помощью
@@ -205,15 +207,22 @@ export default {
         return content;
       }
     },
-    pauseVideos(){
-      this.$refs.twoPagesVContainer.forEach(component => {
-        const containers = component.vContainerList;
-        containers.forEach(video => video.pause());
-      });
-      this.$refs.singlePageVContainer.forEach(component => {
-        const video = component.vContainer;
-        video.pause();
-      });
+    pauseVideos() {
+      const singlePageArray = this.$refs.singlePageVContainer;
+      const twoPagesArray = this.$refs.twoPagesVContainer;
+
+      if (singlePageArray) {
+        singlePageArray.forEach((component) => {
+          const video = component.vContainer;
+          video.pause();
+        });
+      }
+      if (twoPagesArray) {
+        twoPagesArray.forEach((component) => {
+          const containers = component.vContainerList;
+          containers.forEach((video) => video.pause());
+        });
+      }
     },
     onSlideChange(swiper) {
       this.setCurrentPages(swiper);

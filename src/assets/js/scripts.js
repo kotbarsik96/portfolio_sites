@@ -171,3 +171,10 @@ export function createNode(tagName, content, className = null){
     typeof content === 'string' ? node.innerHTML = content : node.append(content);
     return node;
 }
+
+// обернуть строку в тег //
+export function wrapToHTMLTag(string, tagName = "span"){
+    const element = document.createElement(tagName);
+    element.innerHTML = string.trim();
+    return element;
+}
