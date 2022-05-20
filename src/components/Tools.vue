@@ -13,15 +13,23 @@
               Языки, препроцессоры, сборщик
             </p>
             <ul class="tools-list__item-list">
-              <li class="tools-list__item-item">HTML;</li>
-              <li class="tools-list__item-item">CSS;</li>
-              <li class="tools-list__item-item">SCSS;</li>
-              <li class="tools-list__item-item">JS;</li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">HTML;</scroll-anim>
+              </li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">CSS;</scroll-anim>
+              </li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">SCSS;</scroll-anim>
+              </li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">JS;</scroll-anim>
+              </li>
               <li
                 class="tools-list__item-item"
                 title="Таск-менеджер (сборщик), содержащий плагины для объединения файлов, оптимизации изображений и выполнения других задач по автоматизации процессов"
               >
-                Gulp
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">Gulp</scroll-anim>
               </li>
             </ul>
           </li>
@@ -33,7 +41,11 @@
               модифицировать под поставленные задачи
             </p>
             <ul class="tools-list__item-list">
-              <li class="tools-list__item-item">Slider Swiper</li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">
+                  Slider Swiper
+                </scroll-anim>
+              </li>
             </ul>
             <a href="#features-block" class="tools-list__button button">
               Посмотреть
@@ -48,9 +60,15 @@
               цели
             </p>
             <ul class="tools-list__item-list">
-              <li class="tools-list__item-item">Анимация при прокрутке;</li>
-              <li class="tools-list__item-item">Спойлеры;</li>
-              <li class="tools-list__item-item">Ползунок;</li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">Анимация при прокрутке;</scroll-anim>
+              </li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">Спойлеры;</scroll-anim>
+              </li>
+              <li class="tools-list__item-item">
+                <scroll-anim :animType="'translate'" :queue="true" :duration="325">Ползунок;</scroll-anim>
+              </li>
               <li class="tools-list__item-item">...</li>
             </ul>
             <a href="#features-block" class="tools-list__button button">

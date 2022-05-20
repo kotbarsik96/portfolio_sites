@@ -5,7 +5,7 @@ export default {
     getters: {
         modalWindows(state) {
             return state.bodyContentLists.map((modal, index) => {
-                modal.id = Date.now() + index;
+                // modal.id = Date.now() + index;
                 return modal;
             });
         }

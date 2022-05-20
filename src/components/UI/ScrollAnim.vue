@@ -5,8 +5,14 @@
 </template>
 
 <script>
-import { getCoords, wrapToHTMLTag } from "@/assets/js/scripts";
+import { getCoords } from "@/assets/js/scripts";
+import { mapGetters, mapMutations } from "vuex";
 import gsap from "gsap";
+
+// для добавления новой анимации:
+// 1. Придумать ей название, использующееся в animType;
+// 2. Создать методы с придуманным названием animType в: methods (под animMethods()), animMethods(), setDefaultAnim();
+// 3. Прописать код в созданные методы.
 
 export default {
   // !ВАЖНО, чтобы в slot был только один корневой блок, иначе анимация выполнится только для первого блока!
@@ -49,7 +55,11 @@ export default {
       animPoint: 0,
     };
   },
+  computed: {
+    ...mapGetters(["animQueue"]),
+  },
   methods: {
+    ...mapMutations(["addScrollAnim", "removeScrollAnim", "startAnim"]),
     setAnimPoint() {
       this.animPoint =
         document.documentElement.clientHeight -
@@ -68,8 +78,8 @@ export default {
           ? parent.prepend(slotNode)
           : parent.append(slotNode);
       };
-      
-      if(slotNode) {
+
+      if (slotNode) {
         extractSlotNode();
         this.slotNode = slotNode;
       } else this.slotNode = rootComp;
@@ -88,6 +98,29 @@ export default {
       window.removeEventListener("scroll", this.scrollHandler);
       window.removeEventListener("resize", this.setAnimPoint);
     },
+    applyAnim() {
+      if (this.status !== "animating") {
+        this.status = "animating";
+        this.animMethods()
+          [this.animType]()
+          .then(() => {
+            this.status = "animated";
+            if (this.queue) this.removeScrollAnim(this);
+          });
+      }
+    },
+    setDefaultPosition() {
+      return {
+        translate: () => {
+          gsap.set(this.slotNode, { y: -300 });
+          this.slotNode.parentNode.style.overflow = "hidden";
+        },
+        typeWriter: () => {
+          this.slotNode.style.minHeight = "1.5em";
+          this.slotNode.textContent = "";
+        },
+      };
+    },
     // animations
     animMethods() {
       return {
@@ -95,7 +128,18 @@ export default {
         typeWriter: this.typeWriter,
       };
     },
-    translate() {},
+    translate() {
+      return new Promise((resolve) => {
+        gsap.to(this.slotNode, {
+          y: 0,
+          duration: this.duration / 1000,
+          onComplete: () => {
+            resolve();
+            this.slotNode.parentNode.style.removeProperty("overflow");
+          },
+        });
+      });
+    },
     typeWriter() {
       return new Promise((resolve) => {
         this.slotNode.textContent = "";
@@ -103,6 +147,7 @@ export default {
         const letters = text
           .split("")
           .filter((str) => (str.match(/\s\s/) ? false : str));
+
         letters.forEach((lt, i) => {
           const timeout = this.speed * i;
           setTimeout(() => {
@@ -118,13 +163,16 @@ export default {
       const becameVisible = boolNew === true && boolOld === false;
       const invisibleRepeatableNotAnimating =
         !becameVisible && this.repeatAnim && this.status !== "animating";
+      const addToQueue = () => {
+        this.addScrollAnim(this);
+        if (this.animQueue.length === 1) this.startAnim();
+      };
 
+      // элемент перестал быть виден. Указать, что нужно будет сделать переанимацию, если this.repeatAnim === true
       if (invisibleRepeatableNotAnimating) this.status = "no_animated";
+      // применить анимацию / добавить в очередь
       else if (becameVisible && this.status === "no_animated") {
-        this.status = "animating";
-        this.animMethods()
-          [this.animType]()
-          .then((resolve) => (this.status = "animated"));
+        this.queue ? addToQueue() : this.applyAnim();
       }
     },
     status(value) {
@@ -139,10 +187,7 @@ export default {
     this.getSlotNode();
     this.scrollHandler();
     if (this.slotNode) window.addEventListener("scroll", this.scrollHandler);
-    if (this.animType === "typeWriter") {
-      this.slotNode.style.minHeight = "1.5em";
-      this.slotNode.textContent = "";
-    }
+    this.setDefaultPosition()[this.animType]();
   },
   beforeUnmount() {
     this.removeHandlers();

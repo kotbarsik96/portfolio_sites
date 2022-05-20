@@ -1,16 +1,31 @@
 export default {
     state: {
-        scrollAnimQueue: []
+        animQueue: [],
+        visibleAnims: []
+    },
+    getters: {
+        animQueue(state) {
+            return state.animQueue;
+        }
     },
     mutations: {
-        addScrollAnim(state, scrollAnim){
-            state.scrollAnimQueue.push(scrollAnim);
+        addScrollAnim(state, scrollAnim) {
+            if(!state.animQueue.includes(scrollAnim)) state.animQueue.push(scrollAnim);
+            this.commit("setVisibleAnims");
         },
-        removeScrollAnim(state, scrollAnim = null){
-            const index = state.scrollAnimQueue.indexOf(scrollAnim);
-            index >= 0
-                ? state.scrollAnimQueue.splice(index, 1)
-                : state.scrollAnimQueue.shift();
-        }
+        removeScrollAnim(state, scrollAnim) {
+            const queue = state.animQueue;
+            const index = queue.indexOf(scrollAnim);
+            queue.splice(index, 1);
+            this.commit("setVisibleAnims");
+        },
+        setVisibleAnims(state) {
+            state.visibleAnims = state.animQueue.filter(animEl => animEl.isVisible);
+            this.commit("startAnim");
+        },
+        startAnim(state) {
+            const queue = state.visibleAnims;
+            if (queue.length > 0) queue[0].applyAnim();
+        },
     }
 }
