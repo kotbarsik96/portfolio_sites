@@ -1,7 +1,7 @@
 <template>
   <section id="features-block" class="page-block features-block">
     <div class="container">
-      <scroll-anim :animType="'typeWriter'">
+      <scroll-anim :animType="'typeWriter'" :queue="true">
         <h2 class="page-block__title">Что именно я умею?</h2>
       </scroll-anim>
       <div class="page-block__text-block text-block">
@@ -112,9 +112,20 @@ export default {
   },
   setup() {
     const onTouchStart = (swiper, event) => {
-      event.target.className.includes("page-title") ||
-      event.target.closest(".image-container") ||
-      event.target.closest(".video-container")
+      const isMouse = event.pointerType === "mouse";
+      let noSwipeable;
+      if (isMouse) {
+        noSwipeable =
+          event.target.className.includes("page-title") ||
+          event.target.closest(".image-container") ||
+          event.target.closest(".video-container");
+      } else {
+        noSwipeable =
+          event.target.closest(".image-container") ||
+          event.target.closest(".video-container");
+      }
+
+      noSwipeable
         ? (swiper.allowTouchMove = false)
         : (swiper.allowTouchMove = true);
     };
@@ -173,7 +184,6 @@ export default {
       window.addEventListener("resize", onResize);
     },
     createModalWindow(ftr) {
-      console.log(ftr);
       const ftrTitle = `<span class="__selected">${capitalLetter(
         ftr.title
       )}</span>`;

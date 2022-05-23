@@ -1,7 +1,7 @@
 <template>
   <section id="tools-block" class="page-block tools-block">
     <div class="container">
-      <scroll-anim :animType="'typeWriter'">
+      <scroll-anim :animType="'typeWriter'" :queue="true">
         <h2 class="page-block__title anim__object-text">Чем я пользуюсь?</h2>
       </scroll-anim>
       <div class="page-block__content tools-block__content">

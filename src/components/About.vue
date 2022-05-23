@@ -2,7 +2,7 @@
   <section id="about-block" class="page-block about-block">
     <div class="container">
       <h1 class="page-block__title anim__object-text">
-        <scroll-anim :animType="'typeWriter'">Портфолио</scroll-anim>
+        <scroll-anim :animType="'typeWriter'" :queue="true">Портфолио</scroll-anim>
       </h1>
       <div class="page-block__content">
         <div class="page-block__message about-block__message">

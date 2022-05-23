@@ -158,7 +158,7 @@ export default {
       const unit = duration / 100;
       const value = currentTime / unit;
 
-      timeline.style.width = `${value}%`;
+      if(timeline) timeline.style.width = `${value}%`;
     },
     expand() {
       const vContainer = this.vContainer;

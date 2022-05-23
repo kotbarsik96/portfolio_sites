@@ -1,7 +1,7 @@
 <template>
   <section id="works-block" class="page-block works-block">
     <div class="works-block__container container">
-      <scroll-anim :animType="'typeWriter'">
+      <scroll-anim :animType="'typeWriter'" :queue="true">
         <h2 class="page-block__title anim__object-text">Мои работы</h2>
       </scroll-anim>
       <div class="works-block__content">
