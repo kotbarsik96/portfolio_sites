@@ -54,11 +54,7 @@
             "examples": [
                 {
                     "text": "audiofree (на главной странице несколько слайдеров)",
-<<<<<<< HEAD
                     "url": "https://kotbarsik96.github.io/sites/audiofree/dist/html-main/"
-=======
-                    "url": "https://kotbarsik96.github.io/sites/audiofree/dist/html-main/index.html"
->>>>>>> 307e5168879ebd13b473c4a57cd90fc25bc45bcb
                 },
                 {
                     "text": "Streetster (связан с кружочками выбора цвета)",
