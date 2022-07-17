@@ -799,11 +799,22 @@ body.__dark-theme {
 
 // <SELECT>=======================================================================================
 .select {
+    $togglingItemsDur: 0.3s;
+
     position: relative;
     cursor: pointer;
     margin: 10px 15px;
     font-size: 18px;
     width: 275px;
+    &.__active {
+        .select {
+            &__items {
+                opacity: 1;
+                visibility: visible;
+                transition-delay: 0s;
+            }
+        }
+    }
 
     &__value,
     &__item {
@@ -826,6 +837,11 @@ body.__dark-theme {
         top: 100%;
         left: 0;
         width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transition-property: visibility, opacity;
+        transition-duration: 0s, $togglingItemsDur;
+        transition-delay: $togglingItemsDur, 0s;
     }
 
     &__item {
@@ -899,12 +915,11 @@ body.__dark-theme {
         overflow: hidden;
         font-size: 20px;
         transition-property: max-height, padding;
-        transition-duration: 0.4s;
+        transition-duration: 0.8s;
         transition-delay: 0s, 0.3s;
         padding-top: 20px;
         padding-bottom: 0;
         border-radius: 0 0 10px 10px;
-        max-height: 30vh;
         overflow: auto;
         &::-webkit-scrollbar {
             width: 5px;
@@ -1176,7 +1191,6 @@ body.__dark-theme {
     flex-wrap: wrap;
     justify-content: space-around;
     &__empty {
-        position: absolute;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -1196,7 +1210,7 @@ body.__dark-theme {
     flex-direction: column;
     align-items: center;
     padding: 0 0 50px 0;
-    transition: all .6s;
+    transition: all 0.6s;
 
     &__controls {
         display: flex;
@@ -1216,7 +1230,7 @@ body.__dark-theme {
         }
     }
 
-    &__controls-delimeter{
+    &__controls-delimeter {
         margin: 0 5px;
     }
 
@@ -1328,31 +1342,12 @@ body.__dark-theme {
     }
 
     &__filter-block {
-        margin: 40px 0 0 0;
         flex: 0 0 350px;
-        position: relative;
     }
     &__filter-block-body {
         display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        justify-content: center;
-        @media (min-width: 1250px) {
-            width: 350px;
-            &.__stick-top {
-                position: relative;
-                top: 0;
-            }
-            &.__sticky {
-                position: fixed;
-                margin: 0 50px 0 0;
-            }
-            &.__stick-bottom {
-                position: relative;
-                top: 100%;
-                transform: translateY(-100%);
-            }
-        }
+        flex-direction: column;
+        align-items: center;
     }
 
     @media (max-width: 1249px) {
@@ -1363,7 +1358,7 @@ body.__dark-theme {
 
         &__sites-list {
             order: 2;
-            margin: 40px 0 0 0;
+            margin: 20px 0 0 0;
 
             @media (min-width: 600px) {
                 .site-item {
@@ -1378,16 +1373,11 @@ body.__dark-theme {
 
         &__filter-block {
             flex: 1 1 auto;
-            order: 1;
-        }
-        &__filter-block-body {
-            flex-direction: column;
-            align-items: center;
+            max-width: 450px;
         }
     }
 }
 // <WORKS-BLOCK>==================================================================================
-
 
 @mixin mediaContainerShadow {
     text-shadow: 1px 1px 10px rgba(#000, 0.5);
@@ -1513,7 +1503,7 @@ body.__dark-theme {
 .video-container {
     // состояние: видео на паузе //
     $fadeDur: 0.85s;
-    $playingDelay: .9s;
+    $playingDelay: 0.9s;
 
     &__play-btn {
         transition-property: opacity;
@@ -1570,11 +1560,11 @@ body.__dark-theme {
         object-fit: contain;
     }
 
-    &__controls{
+    &__controls {
         opacity: 0;
-        transition: opacity .3s;
+        transition: opacity 0.3s;
         position: absolute;
-        background: rgba(#000, .3);
+        background: rgba(#000, 0.3);
         top: 0;
         left: 0;
         width: 101%;
@@ -1589,7 +1579,7 @@ body.__dark-theme {
 
     &__expand-btn {
         position: absolute;
-        &::before{
+        &::before {
             color: #fff;
             @include mediaContainerShadow;
         }
@@ -1699,8 +1689,9 @@ body.__dark-theme {
         &__slide {
             padding: 5% 8%;
         }
-        &__page-presentation{
-            img,video{
+        &__page-presentation {
+            img,
+            video {
                 max-height: calc(90vw / #{$coef});
             }
         }
@@ -1719,8 +1710,9 @@ body.__dark-theme {
             font-size: 19px;
         }
 
-        &__page-presentation{
-            img,video{
+        &__page-presentation {
+            img,
+            video {
                 max-height: calc(100vw / #{$coef});
             }
         }
@@ -1751,7 +1743,8 @@ body.__dark-theme {
         z-index: 991;
     }
     // убрать кнопки expand в video-/image-container
-    .__icon-expand, .image-container__controls {
+    .__icon-expand,
+    .image-container__controls {
         display: none;
     }
 

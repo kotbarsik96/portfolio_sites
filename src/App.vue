@@ -15,13 +15,13 @@
 <script>
 import { mapGetters } from "vuex";
 
-import styles from "@/assets/scss/styles.scss";
+import "@/assets/scss/styles.scss";
 import MyHeader from "@/components/MyHeader";
 import AboutBlock from "@/components/About";
 import ToolsBlock from "@/components/Tools";
 import WorksBlock from "@/components/Works";
 import FeaturesBlock from "@/components/Features";
-import ModalWindowsList from "@/components/UI/ModalWindowsList.vue";
+import ModalWindowsList from "@/components/UI/modal-window/ModalWindowsList.vue";
 
 export default {
   components: {

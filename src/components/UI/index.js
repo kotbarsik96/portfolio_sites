@@ -1,12 +1,12 @@
-import MySelect from '@/components/UI/MySelect';
-import MyFilter from '@/components/UI/MyFilter';
-import ImageContainer from '@/components/UI/ImageContainer';
-import VideoContainer from '@/components/UI/VideoContainer';
-import ScrollAnim from '@/components/UI/ScrollAnim';
+import SelectBlock from '@/components/UI/select-filter/SelectBlock';
+import FilterBlock from '@/components/UI/select-filter/FilterBlock';
+import ImageContainer from '@/components/UI//media-containers/ImageContainer';
+import VideoContainer from '@/components/UI/media-containers/VideoContainer';
+import ScrollAnim from '@/components/UI/misc/ScrollAnim';
 
 export default [
-    MySelect,
-    MyFilter,
+    SelectBlock,
+    FilterBlock,
     ImageContainer,
     VideoContainer,
     ScrollAnim

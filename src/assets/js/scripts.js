@@ -67,27 +67,45 @@ export function getCoords(elem) {
     };
 }
 // spoiler //
-export function initSpoilerElem(btn, body = btn.nextElementSibling) {
+// mediaValue - максимальная ширина экрана, на которой будет применен спойлер
+export function initSpoilerElem(btn, body = btn.nextElementSibling, mediaValue = null) {
     setTimeout(() => {
         // btn - кнопка, открывающая/закрывающая спойлер, body - тело, открывающееся или закрывающееся
         const elem = btn.parentNode;
         const shownClass = "__spoiler-shown";
         body.style.removeProperty("max-height");
-        const bodyHeight = body.offsetHeight;
+        let bodyHeight = body.offsetHeight;
 
-        hide();
-        btn.removeEventListener("click", toggle);
-        btn.addEventListener("click", toggle);
+        if (!mediaValue) setHandlers();
+        if (typeof parseInt(mediaValue) === "number") {
+            const mediaQuery = window.matchMedia(`(max-width: ${mediaValue}px)`);
 
+            if (mediaQuery.matches) setHandlers();
+            mediaQuery.addEventListener("change", function () {
+                if (mediaQuery.matches) setHandlers();
+                else removeHandlers();
+            });
+        }
+
+        function setHandlers() {
+            hide();
+            btn.addEventListener("click", toggle);
+        }
+        function removeHandlers() {
+            elem.classList.remove(shownClass);
+            body.style.removeProperty("max-height");
+            body.style.removeProperty("padding");
+            btn.removeEventListener("click", toggle);
+        }
         function toggle() {
             elem.classList.contains(shownClass) ? hide() : show();
         }
         function hide() {
             elem.classList.remove(shownClass);
             body.style.cssText = `
-          max-height: 0px;
-          padding: 0px;
-      `;
+                max-height: 0px;
+                padding: 0px;
+            `;
         }
         function show() {
             elem.classList.add(shownClass);
@@ -97,58 +115,22 @@ export function initSpoilerElem(btn, body = btn.nextElementSibling) {
     }, 0);
 }
 
-// position: sticky //
-export function positionSticky(el, transitionEl = null) {
-    // transitionEl - элемент/массив элементов, изменяющи[й,х] высоту с transition
-    const posClasses = {
-        top: "__stick-top",
-        sticky: "__sticky",
-        bottom: "__stick-bottom",
-    };
-    const topValue = document.querySelector(".header").offsetHeight + 30;
-    const parent = el.parentNode;
-
-    const onScroll = () => {
-        const parentTop = getCoords(parent).top;
-        const elTop = getCoords(el).top;
-        const scroll = window.pageYOffset + topValue;
-        const stickToTop = scroll < parentTop;
-        const sticky =
-            scroll > parentTop && scroll + el.offsetHeight <= parentTop + parent.offsetHeight;
-        const stickToBottom = scroll + el.offsetHeight > parentTop + parent.offsetHeight;
-
-        if (stickToTop && !el.classList.contains(posClasses.top))
-            addToClist(posClasses.top);
-        if (sticky && !el.classList.contains(posClasses.sticky))
-            addToClist(posClasses.sticky);
-        if (stickToBottom && !el.classList.contains(posClasses.bottom))
-            addToClist(posClasses.bottom);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    if (transitionEl) {
-        if (Array.isArray(transitionEl)) transitionEl.forEach(tr => tr.addEventListener('transitionend', onScroll));
-        else transitionEl.addEventListener('transitionend', onScroll);
+// превращает obj[key1.key2.key3] в obj[key1][key2][key3]
+export function parseKey(obj, key) {
+    const subKeys = key.split(".");
+    let parsed = obj[subKeys[0]];
+    for (let i = 1; i < subKeys.length; i++) {
+        const subK = subKeys[i];
+        if (subK) parsed = parsed[subK];
     }
-    const observer = new MutationObserver(onScroll);
-    observer.observe(document, { childList: true, subtree: true });
 
-    function addToClist(toAdd) {
-        el.classList.add(toAdd);
-
-        toAdd === posClasses.sticky ? el.style.top = `${topValue}px` : el.style.removeProperty('top');
-
-        for (let key in posClasses)
-            posClasses[key] !== toAdd
-                ? el.classList.remove(posClasses[key])
-                : false;
-    }
+    return parsed;
 }
 
 // преобразование секунд в формат времени мм:сс
 export function formatToMinutes(timestamp) {
-    if(typeof timestamp === 'number') timestamp = Math.round(timestamp).toString();
-    if(typeof timestamp === 'string') timestamp = Math.round(parseInt(timestamp)).toString();
+    if (typeof timestamp === 'number') timestamp = Math.round(timestamp).toString();
+    if (typeof timestamp === 'string') timestamp = Math.round(parseInt(timestamp)).toString();
 
     if (timestamp.length < 2) return `00:0${timestamp}`;
     else if (timestamp.length >= 2) {
@@ -165,15 +147,15 @@ export function formatToMinutes(timestamp) {
 }
 
 // сделать HTMLElement //
-export function createNode(tagName, content, className = null){
+export function createNode(tagName, content, className = null) {
     const node = document.createElement(tagName);
-    if(className) node.className = className;
+    if (className) node.className = className;
     typeof content === 'string' ? node.innerHTML = content : node.append(content);
     return node;
 }
 
 // обернуть строку в тег //
-export function wrapToHTMLTag(string, tagName = "span"){
+export function wrapToHTMLTag(string, tagName = "span") {
     const element = document.createElement(tagName);
     element.innerHTML = string.trim();
     return element;

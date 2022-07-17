@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ModalWindow from "@/components/UI/ModalWindow";
+import ModalWindow from "@/components/UI/modal-window/ModalWindow";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
