@@ -1,4 +1,4 @@
-import features from '@/../public/json/features.json';
+import rootPath from "@/root-path.js";
 
 function newArray(array) {
     return array.map((item, index, array) => {
@@ -11,13 +11,28 @@ function newArray(array) {
 
 export default {
     state: {
-        features
+        features: []
+    },
+    actions: {
+        async loadFeatures({ commit }) {
+            const request = await fetch(`${rootPath}json/features.json`);
+            const features = await request.json();
+            commit("setFeatures", features);
+        }
+    },
+    mutations: {
+        setFeatures(state, features){
+            state.features = features;
+        }
     },
     getters: {
         pagedFeatures(state) {
             let pageCounter = 1;
-            const video = setNumbers(state.features.video);
-            const img = setNumbers(state.features.img);
+            const stateVideo = state.features.video;
+            const stateImg = state.features.img;
+
+            const video = stateVideo ? setNumbers(stateVideo) : [];
+            const img = stateImg ? setNumbers(stateImg) : [];
 
             function setNumbers(array) {
                 return array.map(ftr => {
@@ -30,7 +45,7 @@ export default {
 
             return { img, video, pageCounter };
         },
-        pagesTotal(state, getters){
+        pagesTotal(state, getters) {
             return getters.pagedFeatures.pageCounter;
         },
         twoPagesArray(state, getters) {

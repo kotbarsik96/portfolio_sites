@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { capitalLetter } from "@/assets/js/scripts";
+import { capitalLetter } from "@/assets/js/scripts.js";
 
 export default {
   name: "two-pages",

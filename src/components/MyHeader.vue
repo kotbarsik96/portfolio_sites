@@ -13,9 +13,6 @@
           <a class="header__link-button" href="#about-block">Обо мне</a>
         </li>
         <li class="header__link">
-          <a class="header__link-button" href="#tools-block">Мои инструменты</a>
-        </li>
-        <li class="header__link">
           <a class="header__link-button" href="#works-block">Мои работы</a>
         </li>
         <li class="header__link">

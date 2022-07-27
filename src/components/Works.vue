@@ -55,16 +55,16 @@
                             @changeSelected="(selected) => setSortValue('sortType', selected)"
                             inputName="works-sort-type"
                             :options="[
-                                { title: 'По алфавиту', value: 'title' },
-                                { title: 'По содержимому', value: 'features' }
+                                { title: 'По содержимому', value: 'features' },
+                                { title: 'По алфавиту', value: 'title' }
                             ]"
                         ></SelectBlock>
                         <SelectBlock
                             @changeSelected="(selected) => setSortValue('sortOrder', selected)"
                             inputName="works-sort-order"
                             :options="[
-                                { title: 'С начала', value: 'start' },
-                                { title: 'С конца', value: 'end' }
+                                { title: 'С конца', value: 'end' },
+                                { title: 'С начала', value: 'start' }
                             ]"
                         ></SelectBlock>
                         <FilterBlock
@@ -85,7 +85,7 @@
 <script>
 import { mapGetters } from "vuex";
 import cricketIcon from "@/assets/img/icons/cricket.svg";
-import WorksItem from "@/components/UI/misc/WorksItem";
+import WorksItem from "@/components/UI/misc/WorksItem.vue";
 import { gsap } from "gsap";
 
 export default {

@@ -1,8 +1,8 @@
-import SelectBlock from '@/components/UI/select-filter/SelectBlock';
-import FilterBlock from '@/components/UI/select-filter/FilterBlock';
-import ImageContainer from '@/components/UI//media-containers/ImageContainer';
-import VideoContainer from '@/components/UI/media-containers/VideoContainer';
-import ScrollAnim from '@/components/UI/misc/ScrollAnim';
+import SelectBlock from '@/components/UI/select-filter/SelectBlock.vue';
+import FilterBlock from '@/components/UI/select-filter/FilterBlock.vue';
+import ImageContainer from '@/components/UI//media-containers/ImageContainer.vue';
+import VideoContainer from '@/components/UI/media-containers/VideoContainer.vue';
+import ScrollAnim from '@/components/UI/misc/ScrollAnim.vue';
 
 export default [
     SelectBlock,

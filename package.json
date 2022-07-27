@@ -1,31 +1,23 @@
 {
-  "name": "portfolio-vue",
-  "version": "0.1.0",
+  "name": "-",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "core-js": "^3.8.3",
-    "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.2"
+    "vue": "^3.2.25",
+    "vuex": "^4.0.2",
+    "whatwg-fetch": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-plugin-vuex": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
+    "@vitejs/plugin-legacy": "^1.7.1",
+    "@vitejs/plugin-vue": "^2.3.3",
     "gsap": "^3.10.4",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "swiper": "^8.1.4"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+    "sass": "^1.54.0",
+    "swiper": "^8.3.2",
+    "vite": "^2.9.9"
+  }
 }

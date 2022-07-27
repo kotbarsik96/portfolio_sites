@@ -106,11 +106,9 @@ export default {
             function filterObj() {}
             function filterArr() {
                 for (let fieldKey of fieldKeys) {
-                    console.log(filtered, 'before');
                     filtered = filtered.filter((item) => {
                         return filterFunc(item, fieldKey);
                     });
-                    console.log(filtered, 'after');
                 }
             }
             function filterFunc(item, fieldKey) {
@@ -121,9 +119,13 @@ export default {
                     if (inputKey === fieldKey) {
                         const itemValue = parseKey(item, inputKey);
                         const isObj = typeof itemValue === "object";
-                        
-                        if(!isObj && itemValue === inputValue) return true;
-                        if(isObj && Object.values(itemValue).includes(inputValue)) return true;
+
+                        if (!isObj && itemValue === inputValue) return true;
+                        if (
+                            isObj &&
+                            Object.values(itemValue).includes(inputValue)
+                        )
+                            return true;
                         continue;
                     }
                 }
@@ -131,9 +133,21 @@ export default {
         },
     },
     mounted() {
-        this.$refs.optInput[0].dispatchEvent(new Event("change"));
-        this.doFilter();
+        const optInputs = this.$refs.optInput;
+        if (optInputs && optInputs.length > 0) {
+            optInputs[0].dispatchEvent(new Event("change"));
+            this.doFilter();
+        }
         initSpoilerElem(this.$refs.filterTitle, this.$refs.filterBody, 1249);
+    },
+    watch: {
+        objectToFilter(newVal) {
+            this.$nextTick().then(() => {
+                setTimeout(() => {
+                    if (newVal.length > 0) this.doFilter();
+                }, 100);
+            });
+        },
     },
 };
 </script>
