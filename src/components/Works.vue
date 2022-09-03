@@ -1,20 +1,11 @@
 <template>
-    <section
-        id="works-block"
-        class="page-block works-block"
-    >
+    <section id="works-block" class="page-block works-block">
         <div class="works-block__container container">
-            <scroll-anim
-                :animType="'typeWriter'"
-                :queue="true"
-            >
+            <scroll-anim :animType="'typeWriter'" :queue="true">
                 <h2 class="page-block__title anim__object-text">Мои работы</h2>
             </scroll-anim>
             <div class="works-block__content">
-                <ul
-                    class="works-block__sites-list sites-list"
-                    ref="sitesList"
-                >
+                <ul class="works-block__sites-list sites-list" ref="sitesList">
                     <transition-group
                         appear
                         name="works-list"
@@ -37,12 +28,11 @@
                             v-if="filteredSortedWorks.length < 1"
                             :key="'sites-list-empty'"
                         >
-                            <img
-                                :src="cricketIcon"
-                                alt="Сверчок"
-                            />
+                            <img :src="cricketIcon" alt="Сверчок" />
                             <p>Здесь пусто...</p>
-                            <p>Возможно, по выбранным фильтрам нет совпадений</p>
+                            <p>
+                                Возможно, по выбранным фильтрам нет совпадений
+                            </p>
                         </div>
                     </transition>
                 </ul>
@@ -52,27 +42,44 @@
                         ref="filterBlockBody"
                     >
                         <SelectBlock
-                            @changeSelected="(selected) => setSortValue('sortType', selected)"
+                            @changeSelected="
+                                (selected) => setSortValue('sortType', selected)
+                            "
                             inputName="works-sort-type"
                             :options="[
                                 { title: 'По содержимому', value: 'features' },
-                                { title: 'По алфавиту', value: 'title' }
+                                { title: 'По алфавиту', value: 'title' },
                             ]"
                         ></SelectBlock>
                         <SelectBlock
-                            @changeSelected="(selected) => setSortValue('sortOrder', selected)"
+                            @changeSelected="
+                                (selected) =>
+                                    setSortValue('sortOrder', selected)
+                            "
                             inputName="works-sort-order"
                             :options="[
                                 { title: 'С конца', value: 'end' },
-                                { title: 'С начала', value: 'start' }
+                                { title: 'С начала', value: 'start' },
                             ]"
                         ></SelectBlock>
                         <FilterBlock
                             v-model="filteredWorks"
                             :objectToFilter="works"
                             :fields="[
-                                { title: 'По содержимому', key: 'features', type: 'checkbox' },
-                                { title: 'По типу', key: 'type', type: 'checkbox' }
+                                {
+                                    title: 'Количество страниц',
+                                    key: 'isSinglePage',
+                                    type: 'checkbox',
+                                    boolean: {
+                                        forTrue: 'Одностраничный',
+                                        forFalse: 'Многостраничный',
+                                    },
+                                },
+                                {
+                                    title: 'Содержимое',
+                                    key: 'features',
+                                    type: 'checkbox',
+                                },
                             ]"
                         ></FilterBlock>
                     </div>

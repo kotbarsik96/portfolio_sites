@@ -90,7 +90,7 @@
                 </transition>
             </div>
             <div class="site-item__title">
-                {{ `${work.type} ${capitalLetter(work.title)}` }}
+                {{ `${work.pretitle} ${capitalLetter(work.title)}` }}
             </div>
         </a>
     </li>

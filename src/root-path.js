@@ -1,2 +1,2 @@
-// export default "/"; // dev
-export default "/sites/portfolio/" // production
+export default "/"; // dev
+// export default "/sites/portfolio/" // production
