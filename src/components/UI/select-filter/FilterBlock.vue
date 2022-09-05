@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { initSpoilerElem, parseKey } from "@/assets/js/scripts.js";
 
 export default {
@@ -222,11 +223,27 @@ export default {
             }
         },
     },
+    computed: {
+        ...mapGetters(["works"]),
+    },
     created() {
         this.getFieldOptions();
     },
     mounted() {
-        initSpoilerElem(this.$refs.filterTitle, this.$refs.filterBody, 1249);
+        const fetchWatcher = this.$watch(
+            () => this.works,
+            () => {
+                // инициализация SpoilerElem только после наполнения фильтр-блока
+                this.$nextTick().then(() => {
+                    initSpoilerElem(
+                        this.$refs.filterTitle,
+                        this.$refs.filterBody,
+                        1249
+                    );
+                    fetchWatcher();
+                });
+            }
+        );
         this.doFilter();
     },
     watch: {
